@@ -1,2 +1,2 @@
 # tibit
-A tool for organizing information
+Group Project #3: A tool for organizing information 
