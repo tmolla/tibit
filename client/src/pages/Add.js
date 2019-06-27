@@ -7,9 +7,8 @@ import Footer from "../components/Footer";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { List } from "../components/List";
-//import Alert from 'react-bootstrap/Alert'
-//import Form from 'react-bootstrap/Form'
-//import Button from 'react-bootstrap/Button'
+import MyModal from "./MyModal"
+//import Button from "react-bootstrap/Button"
 
 class Add extends Component {
   state = {
@@ -76,11 +75,13 @@ class Add extends Component {
   };
 
   handleTibitUpdate = id => {
-    const tibit = this.state.tibits.find(tibit => tibit._id === id);
+    //const tibit = this.state.tibits.find(tibit => tibit._id === id);
+      console.log("calling handle show in mymodal");
 
-    API.updateTibit(tibit._id, {
-      action: "Read the best book ever! " + Date()
-    }).then(() => this.getAllTibits());
+      //MyModal.show = true;
+    // API.updateTibit(tibit._id, {
+    //   action: "Read the best book ever! " + Date()
+    // }).then(() => this.getAllTibits());
   };
 
   render() {
@@ -103,7 +104,7 @@ class Add extends Component {
               {this.state.tibits.length ? (
                 <List>
                   {this.state.tibits.map(tibit => (
-                    <Tibit
+                    <Tibit ref={this.child}
                       key={tibit._id}
                       action={tibit.action}
                       goal={tibit.goal}
@@ -135,6 +136,11 @@ class Add extends Component {
             </Card>
           </Col>
         </Row>
+        <MyModal
+        message = {this.state.message}
+        handleInputChange={this.handleInputChange}
+        handleFormSubmit = {this.handleFormSubmit}
+        />
         <Footer />
       </Container>
     );

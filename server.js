@@ -18,6 +18,7 @@ app.use(routes);
 
 //connect to the Mongo DB via Mongoose
 mongoose.connect(
+  //process.env.MONGODB_URI || "mongodb://App:App$Tibit!0625>@ds243607.mlab.com:43607/heroku_rq0hcppc",
   process.env.MONGODB_URI || "mongodb://localhost/tibit", 
   { 
     useNewUrlParser: true,

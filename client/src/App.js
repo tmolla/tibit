@@ -5,6 +5,7 @@ import Search from "./pages/Search";
 // import Saved from "./pages/Saved";
 import Add from "./pages/Add";
 import NoMatch from "./pages/NoMatch";
+//import MyModal from "./pages/MyModal"
 import Nav from "./components/Nav";
 
 function App() {

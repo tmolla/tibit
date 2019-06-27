@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 // import Card from "../components/Card";
-// import Form from "../components/Form";
+import Form from "../components/FormAdd";
 // import Book from "../components/Book";
 import Footer from "../components/Footer";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 // import { List } from "../components/List";
 import Alert from 'react-bootstrap/Alert'
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
 
 class Home extends Component {
   state = {
@@ -122,61 +124,6 @@ class Home extends Component {
               <h2 className="text-center">Never forget any action.</h2>
             </Jumbotron>
           </Col> 
-          {/*   
-          <Col size="md-12">
-            <Card title="Tibit Search" icon="far fa-search">
-              <Form
-                handleInputChange={this.handleInputChange}
-                handleFormSubmit={this.handleFormSubmit}
-                q={this.state.q}
-              />
-            </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-12">
-            <Card title="Search Results" icon="camera">
-              {this.state.tibits.length ? (
-                <List>
-                  {this.state.tibits.map(tibit => (
-                    <Book
-                      key={tibit._id}
-                      action={tibit.action}
-                      goal={tibit.goal}
-                      location={tibit.location}
-                      date={tibit.date}
-                      CreateButton={() => (
-                        <button
-                          onClick={() => this.handleTibitCreate()}
-                          className="btn btn-primary btn-sm ml-2"
-                        >
-                          Create
-                        </button>
-                      )}
-                      UpdateButton={() => (
-                        <button
-                          onClick={() => this.handleTibitUpdate(tibit._id)}
-                          className="btn btn-success btn-sm ml-2"
-                        >
-                          Update
-                        </button>
-                      )}
-                      DeleteButton={() => (
-                        <button
-                          onClick={() => this.handleTibitDelete(tibit._id)}
-                          className="btn btn-primary btn-sm ml-2"
-                        >
-                          Delete
-                        </button>
-                      )}
-                    />
-                  ))}
-                </List>
-                ) : (
-                <h2 className="text-center">{this.state.message}</h2>
-              )}
-            </Card>
-          </Col> */}
         </Row> 
         <Row>
             <Alert variant="primary">
@@ -188,6 +135,24 @@ class Home extends Component {
               <p className="mb-0">Who wants to be a hero and take this on?</p>
             </Alert>  
         </Row>
+        <Modal.Dialog>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal title</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            <Form
+                  handleInputChange={this.handleInputChange}
+                  handleFormSubmit={this.handleFormSubmit}
+                  action={this.state.action}
+                />
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button variant="secondary">Close</Button>
+            <Button variant="primary">Save changes</Button>
+          </Modal.Footer>
+        </Modal.Dialog>
         <Footer />
       </Container>
     );
