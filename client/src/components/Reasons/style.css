@@ -1,0 +1,21 @@
+.headings {
+    text-align: center;
+    opacity: 0.8;
+    background-color: rgb(209, 203, 203);
+    height: 400px;
+}
+
+h1 {
+    font-size: 80px;
+    color: white;
+}
+
+h2 {
+    font-size: 60px;
+    color: rgb(139, 55, 139);
+}
+
+h3 {
+    font-size: 40px;
+    color: rgb(96, 139, 96);
+}

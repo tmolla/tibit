@@ -1,0 +1,8 @@
+.footer {
+    height: 150px;
+    width: 1600px;
+    padding: 0;
+    margin: 0;
+    background-color: rgb(143, 49, 151);
+    opacity: 0.9;
+}
