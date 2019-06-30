@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Row} from "../Grid"
 
-function FormAdd({ action, goal, location, date, note, handleInputChange, handleFormSubmit }) {
+function FormAdd({action, note, goal, location, date, handleInputChange, handleFormSubmit }) {
   return (
     <form>
       <div className="form-group">
@@ -76,7 +76,7 @@ function FormAdd({ action, goal, location, date, note, handleInputChange, handle
               </label>
               <input
                 className="form-control"
-                id="Location"
+                id="Date"
                 type="date"
                 value={date}
                 placeholder="Enter the location of action (optional)"

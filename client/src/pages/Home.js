@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 // import Card from "../components/Card";
-import Form from "../components/FormAdd";
+//import Form from "../components/FormAdd";
 // import Book from "../components/Book";
 import Footer from "../components/Footer";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 // import { List } from "../components/List";
 import Alert from 'react-bootstrap/Alert'
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
+
 
 class Home extends Component {
   state = {
@@ -135,24 +134,6 @@ class Home extends Component {
               <p className="mb-0">Who wants to be a hero and take this on?</p>
             </Alert>  
         </Row>
-        <Modal.Dialog>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal title</Modal.Title>
-          </Modal.Header>
-
-          <Modal.Body>
-            <Form
-                  handleInputChange={this.handleInputChange}
-                  handleFormSubmit={this.handleFormSubmit}
-                  action={this.state.action}
-                />
-          </Modal.Body>
-
-          <Modal.Footer>
-            <Button variant="secondary">Close</Button>
-            <Button variant="primary">Save changes</Button>
-          </Modal.Footer>
-        </Modal.Dialog>
         <Footer />
       </Container>
     );

@@ -7,85 +7,94 @@ import Footer from "../components/Footer";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { List } from "../components/List";
-import MyModal from "./MyModal"
+//import MyModal from "./MyModal"
 //import Button from "react-bootstrap/Button"
 
 class Add extends Component {
-  state = {
-    tibits: [],
-    action: "",
-    goal:"",
-    location:"",
-    date:"",
-    note:"",
-    message: "Some message"
-  };
-
+  constructor(props, context) {
+    super(props, context);
+    this.getAllTibits = this.getAllTibits.bind(this);
+    this.state = {
+      tibits: [],
+      action: "",
+      goal: "",
+      location: "",
+      date: "",
+      note: "",
+      message: "Some message"
+    };
+  }
   componentDidMount() {
     this.getAllTibits();
   }
+
+  getAllTibits = () => {
+    console.log(this)
+    API.getAllTibits()
+      .then(res => {
+        console.log("getting all tibits")
+        if (!(res.data.length === 0)) {
+          this.setState({
+            tibits: res.data,
+          })
+          console.log(this.state.tibits)
+        } else {
+          this.setState({
+            tibits: [],
+            message: "Database is empty"
+          })
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+        this.setState({
+          tibits: [],
+          message: err.message
+        })
+      }
+      );
+  };
 
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
-    //sconsole.log(this.state.action);
-  };
-
-  getAllTibits = () => {
-      API.getAllTibits()
-        .then(res =>{
-          console.log("getting all tibits")
-          if (!(res.data.length === 0)){
-            this.setState({
-              tibits: res.data
-            })
-          }else {
-            this.setState({
-              tibits: [],
-              message: "Database is empty"
-            })
-          }
-        })
-        .catch((err) =>
-          this.setState({
-            tibits: [],
-            message: err.message
-          })
-        );
   };
 
   handleFormSubmit = event => {
     event.preventDefault();
     console.log(this.state.action)
     API.createTibit({
-        action: this.state.action,
-        goal: this.state.goal,
-        location: this.state.location,
-        date: Date.now(),
-        note: this.state.note
-      }).then(() => this.getAllTibits());
+      action: this.state.action,
+      goal: this.state.goal,
+      location: this.state.location,
+      date: Date.now(),
+      note: this.state.note
+    }).then(() => {
+      this.setState({
+        tibits: [],
+        action:"",
+        note: "",
+        goal: "",
+        location: "",
+        date: ""
+      })
+      this.getAllTibits()
+    });
   };
 
   handleTibitDelete = id => {
     const tibit = this.state.tibits.find(tibit => tibit._id === id);
     API.deleteTibit(tibit._id)
-    .then(() => this.getAllTibits());
+      .then(() => this.getAllTibits());
   };
 
-  handleTibitUpdate = id => {
-    //const tibit = this.state.tibits.find(tibit => tibit._id === id);
-      console.log("calling handle show in mymodal");
-
-      //MyModal.show = true;
-    // API.updateTibit(tibit._id, {
-    //   action: "Read the best book ever! " + Date()
-    // }).then(() => this.getAllTibits());
-  };
 
   render() {
+    console.log("asda")
     return (
+
       <Container>
         <Row>
           <Col size="md-12">
@@ -93,7 +102,11 @@ class Add extends Component {
               <Form
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={this.handleFormSubmit}
-                action={this.state.action}
+                action = {this.state.action}
+                note = {this.state.note}
+                goal = {this.state.goal}
+                location = {this.state.location}
+                date = {this.state.date}
               />
             </Card>
           </Col>
@@ -103,22 +116,16 @@ class Add extends Component {
             <Card title="Added Tibits" icon="camera">
               {this.state.tibits.length ? (
                 <List>
-                  {this.state.tibits.map(tibit => (
-                    <Tibit ref={this.child}
+                  {this.state.tibits.map(tibit => console.log("map") || (
+                    <Tibit
                       key={tibit._id}
+                      id={tibit._id}
                       action={tibit.action}
                       goal={tibit.goal}
                       location={tibit.location}
-                      note = {tibit.note}
+                      note={tibit.note}
                       date={tibit.date}
-                      UpdateButton={() => (
-                        <button
-                          onClick={() => this.handleTibitUpdate(tibit._id)}
-                          className="btn btn-success btn-sm ml-2"
-                        >
-                          Update
-                        </button>
-                      )}
+                      getAllTibits={this.getAllTibits.bind(this)}
                       DeleteButton={() => (
                         <button
                           onClick={() => this.handleTibitDelete(tibit._id)}
@@ -130,17 +137,12 @@ class Add extends Component {
                     />
                   ))}
                 </List>
-                ) : (
-                <h2 className="text-center">{this.state.message}</h2>
-              )}
+              ) : (
+                  <h2 className="text-center">{this.state.message}</h2>
+                )}
             </Card>
           </Col>
         </Row>
-        <MyModal
-        message = {this.state.message}
-        handleInputChange={this.handleInputChange}
-        handleFormSubmit = {this.handleFormSubmit}
-        />
         <Footer />
       </Container>
     );

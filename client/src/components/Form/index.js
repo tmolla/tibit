@@ -1,6 +1,6 @@
 import React from "react";
 
-function Form({ q, handleInputChange, handleFormSubmit }) {
+function Form({ query, handleInputChange, handleFormSubmit }) {
   return (
     <form>
       <div className="form-group">
@@ -11,7 +11,7 @@ function Form({ q, handleInputChange, handleFormSubmit }) {
           className="form-control"
           id="Title"
           type="text"
-          value={q}
+          value={query}
           placeholder="Type word to search for in Tibits"
           name="q"
           onChange={handleInputChange}

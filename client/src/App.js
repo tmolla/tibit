@@ -7,6 +7,7 @@ import Add from "./pages/Add";
 import NoMatch from "./pages/NoMatch";
 //import MyModal from "./pages/MyModal"
 import Nav from "./components/Nav";
+//import Setting from "./pages/Setting";
 
 function App() {
   return (
