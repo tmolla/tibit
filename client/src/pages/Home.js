@@ -125,16 +125,16 @@ class Home extends Component {
         
         </div>
 
-        <div className="eight wide column">
+        <div className="sixteen wide column">
 
         <Video />
 
         </div>
 
-          <div class="eight wide column">
+          <div class="sixteen wide column">
           
           
-        <Reasons />
+        <SubFooter />
            
           {/*   
           <Col size="md-12">
@@ -194,7 +194,7 @@ class Home extends Component {
         </div> 
         <div className="sixteen wide column center-align">
             
-            <SubFooter /> 
+        <Reasons />
             
         </div>
 

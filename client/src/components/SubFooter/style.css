@@ -1,3 +1,41 @@
 .subfooter {
+    height: 950px;
+    text-align: center;
+    color: white;
+}
+
+
+
+
+
+.one {
     height: 450px;
 }
+
+.two {
+    height: 450px;
+}
+
+.three {
+    height: 450px;
+}
+
+.four {
+    background-color: rgb(233, 233, 233);
+}
+
+.five {
+
+    background-color: rgb(233, 233, 233);
+
+}
+
+.six {
+    
+    background-color: rgb(233, 233, 233);
+
+}
+
+
+
+

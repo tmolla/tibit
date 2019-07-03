@@ -1,6 +1,7 @@
 import React from "react";
-import { Spring } from "react-spring";
+import { useSpring, animated } from "react-spring";
 import "./style.css";
+import Words from "../Wordslide"
 
 
 function Intro(){
@@ -8,9 +9,9 @@ function Intro(){
   return (
 
     <div className="image-slider">
-    <h1>This says something.</h1>
-    <h2>This says something else.</h2>
-    <h3>Someting else.</h3>
+    <h1> T i b i T</h1>
+    <h2>A simple note taking app for <Words /> </h2>
+    <h4>Create A Free Account</h4>
     </div>
   )
 

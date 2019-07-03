@@ -1,8 +1,10 @@
 .video {
-    background-color:black;
-    opacity: 0.5;
-    height: 400px;
+    background-image: url(/Images/images4.jpeg);
+    height: 500px;
     padding: 12px;
+    color: white;
+    font-size: 20px;
 }
+
 
 
