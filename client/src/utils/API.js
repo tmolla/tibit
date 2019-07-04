@@ -3,7 +3,6 @@ import axios from "axios";
 export default {
   // search for Tibits
   findTibits: function(phrase) {
-    console.log("here is phrase " + phrase);
      return axios.get("/api/tibits/find/" + phrase );
    },
   // Gets all tibits

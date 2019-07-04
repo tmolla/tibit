@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
-// import Card from "../components/Card";
-// import Form from "../components/Form";
-// import Book from "../components/Book";
 import Footer from "../components/Footer";
 import API from "../utils/API";
-// import { List } from "../components/List";
+import { Col, Row, Container } from "../components/Grid";
 import Alert from 'react-bootstrap/Alert';
 import Intro from "../components/Intro";
 import Video from "../components/Video";
@@ -29,16 +26,16 @@ class Home extends Component {
     this.setState({
       [name]: value
     });
-    console.log(this.state.q);
+    // console.log(this.state.q);
   };
 
   findTibits = () => {
-    console.log(this.state.q)
+    //console.log(this.state.q)
     if (this.state.q.trim()){
       API.findTibits(this.state.q)
         .then(res =>{
-          console.log("fiinding tibits")
-          console.log(res.data)
+          //console.log("fiinding tibits")
+          //console.log(res.data)
           if (!(res.data.length === 0)){
             this.setState({
               tibits: res.data
@@ -56,13 +53,13 @@ class Home extends Component {
             tibits: [],
             message: err.message
           })
-          console.log("fiinding tibits catch")}
-        )
+          //console.log("fiinding tibits catch")
+        })
 
     } else {
       API.getAllTibits()
         .then(res =>{
-          console.log("getting all tibits")
+          //"getting all tibits")
           if (!(res.data.length === 0)){
             this.setState({
               tibits: res.data
@@ -86,7 +83,6 @@ class Home extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log("ouch!")
     this.findTibits();
   };
 
@@ -135,69 +131,14 @@ class Home extends Component {
           
           
         <SubFooter />
-           
-          {/*   
-          <Col size="md-12">
-            <Card title="Tibit Search" icon="far fa-search">
-              <Form
-                handleInputChange={this.handleInputChange}
-                handleFormSubmit={this.handleFormSubmit}
-                q={this.state.q}
-              />
-            </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-12">
-            <Card title="Search Results" icon="camera">
-              {this.state.tibits.length ? (
-                <List>
-                  {this.state.tibits.map(tibit => (
-                    <Book
-                      key={tibit._id}
-                      action={tibit.action}
-                      goal={tibit.goal}
-                      location={tibit.location}
-                      date={tibit.date}
-                      CreateButton={() => (
-                        <button
-                          onClick={() => this.handleTibitCreate()}
-                          className="btn btn-primary btn-sm ml-2"
-                        >
-                          Create
-                        </button>
-                      )}
-                      UpdateButton={() => (
-                        <button
-                          onClick={() => this.handleTibitUpdate(tibit._id)}
-                          className="btn btn-success btn-sm ml-2"
-                        >
-                          Update
-                        </button>
-                      )}
-                      DeleteButton={() => (
-                        <button
-                          onClick={() => this.handleTibitDelete(tibit._id)}
-                          className="btn btn-primary btn-sm ml-2"
-                        >
-                          Delete
-                        </button>
-                      )}
-                    />
-                  ))}
-                </List>
-                ) : (
-                <h2 className="text-center">{this.state.message}</h2>
-              )}
-            </Card>
-          </Col> */}
+          
         </div> 
         <div className="sixteen wide column center-align">
             
         <Reasons />
             
         </div>
-
+      
         <Footer />
       </div>
     );

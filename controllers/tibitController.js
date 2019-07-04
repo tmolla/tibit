@@ -30,7 +30,7 @@ module.exports = {
   },
   search: function(req, res) {
     const searchString = new RegExp(req.params.phrase);
-    console.log("getting query " + searchString);
+    //console.log("getting query " + searchString);
     db.Tibit.find({action : {$regex: searchString ,$options:'i'}})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

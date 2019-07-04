@@ -2,7 +2,7 @@ const router = require("express").Router();
 const tibitController = require("../../controllers/tibitController");
 
 // Matches with "/api/tibits"
-console.log("in route api tibits goint to")
+//console.log("in route api tibits goint to")
 router.route("/")
   .get(tibitController.findAll)
   .post(tibitController.create);
