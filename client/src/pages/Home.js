@@ -3,7 +3,11 @@ import Jumbotron from "../components/Jumbotron";
 import Footer from "../components/Footer";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
-import Alert from 'react-bootstrap/Alert'
+import Alert from 'react-bootstrap/Alert';
+import Intro from "../components/Intro";
+import Video from "../components/Video";
+import Reasons from "../components/Reasons";
+import SubFooter from "../components/SubFooter";
 
 
 class Home extends Component {
@@ -108,29 +112,35 @@ class Home extends Component {
 
   render() {
     return (
-      <Container>
-        <Row>
-          <Col size="md-12">
-            <Jumbotron>
-              <h1 className="text-center">
-                <strong>Tibit - Collect your action in one place!</strong>
-              </h1>
-              <h2 className="text-center">Never forget any action.</h2>
-            </Jumbotron>
-          </Col> 
-        </Row> 
-        <Row>
-            <Alert variant="primary">
-              <Alert.Heading>We need a Home page</Alert.Heading>
-              <p>The Home page will be the first page one will see when they get to our site.
-                It should be beautiful and usable. On this page we shoudl have some info that will keep the user informed.
-              </p>
-              <hr />
-              <p className="mb-0">Who wants to be a hero and take this on?</p>
-            </Alert>  
-        </Row>
+      <div className="ui divided grid">
+
+        <div className="sixteen wide column">
+
+        <Intro />
+       
+        
+        </div>
+
+        <div className="sixteen wide column">
+
+        <Video />
+
+        </div>
+
+          <div class="sixteen wide column">
+          
+          
+        <SubFooter />
+          
+        </div> 
+        <div className="sixteen wide column center-align">
+            
+        <Reasons />
+            
+        </div>
+      
         <Footer />
-      </Container>
+      </div>
     );
   }
 }

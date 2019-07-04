@@ -32,7 +32,7 @@ class Nav extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light mb-2">
+      <nav className="navbar sticky-top navbar-expand-lg .bg-transparent">
         <Link className="navbar-brand" to="/">
           TibiT
         </Link>

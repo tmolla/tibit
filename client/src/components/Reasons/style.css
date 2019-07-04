@@ -1,0 +1,27 @@
+.headings {
+    text-align: center;
+    opacity: 0.8;
+    background-image: url(/Images/images2.jpeg);
+    height: 500px;
+}
+
+h1 {
+    font-size: 120px;
+    color: white;
+}
+
+h2 {
+    font-size: 60px;
+    color: rgb(139, 55, 139);
+}
+
+h3 {
+    font-size: 40px;
+    color: rgb(96, 139, 96);
+}
+
+h4 {
+    font-size: 20px;
+    color: rgb(96, 139, 96);
+    
+}
