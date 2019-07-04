@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
-// import Card from "../components/Card";
-//import Form from "../components/FormAdd";
-// import Book from "../components/Book";
 import Footer from "../components/Footer";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
-// import { List } from "../components/List";
 import Alert from 'react-bootstrap/Alert'
 
 
@@ -26,16 +22,16 @@ class Home extends Component {
     this.setState({
       [name]: value
     });
-    console.log(this.state.q);
+    // console.log(this.state.q);
   };
 
   findTibits = () => {
-    console.log(this.state.q)
+    //console.log(this.state.q)
     if (this.state.q.trim()){
       API.findTibits(this.state.q)
         .then(res =>{
-          console.log("fiinding tibits")
-          console.log(res.data)
+          //console.log("fiinding tibits")
+          //console.log(res.data)
           if (!(res.data.length === 0)){
             this.setState({
               tibits: res.data
@@ -53,13 +49,13 @@ class Home extends Component {
             tibits: [],
             message: err.message
           })
-          console.log("fiinding tibits catch")}
-        )
+          //console.log("fiinding tibits catch")
+        })
 
     } else {
       API.getAllTibits()
         .then(res =>{
-          console.log("getting all tibits")
+          //"getting all tibits")
           if (!(res.data.length === 0)){
             this.setState({
               tibits: res.data
@@ -83,7 +79,6 @@ class Home extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log("ouch!")
     this.findTibits();
   };
 
