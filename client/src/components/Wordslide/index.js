@@ -1,38 +1,21 @@
-import React, { Component } from "react";
-import {Spring} from 'react-spring/renderprops'
+import React, { Component, useState, useEffect } from "react";
+import {useSpring, animated} from 'react-spring'
 import "./style.css";
 
+const Words = () => {
 
+    const props = useSpring({
+        opacity: 1,
+        color: "white",
+        from: { opacity: 0 }
+      })
 
-
-const arr = [
-    "important moments",
-    "grocery lists",
-    "studying",
-    "million dollar ideas"
-]
-
-
-class Words extends Component {
-
-
-    state
-    render() {
-        return(
-        <Spring
-            from={{ opacity: 0}}
-            to={{opacity: 1}}
-        >
-            { props => (
-                <div style={props}>
-                   <h2>Hello</h2>
-                </div>
-            )}
-        </Spring>
-
-        );
+      return <animated.h2 style={props}>hello</animated.h2>
+        
     }
-}
+
+
+    
 
 
 export default Words;

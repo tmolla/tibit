@@ -47,7 +47,7 @@ function SubFooter() {
 
     <h3>TibiT Tips n Tricks</h3>
 
-    <img src="/Images/images7.jpeg" class="ui medium rounded image" width="500" ></img>
+    <img src="/Images/images7.jpeg" class="ui medium rounded image" width="500"></img>
       
     </div>
   </div>
