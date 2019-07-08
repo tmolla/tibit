@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import store from "../../store"
 import "./style.css";
+import authReducer from "../../reducers/authReducer";
 
 class Nav extends Component {
   state = {
@@ -69,24 +71,41 @@ class Nav extends Component {
                 View
               </Link>
             </li>
+            {/* check if the user is authenticated. If authenticated show logout */}
+            {!store.getState().auth.isAuthenticated ? 
+            (
+              <li className="nav-item">
+                <Link
+                  onClick={this.toggleNav}
+                  className={window.location.pathname === "/login" ? "nav-link active" : "nav-link"}
+                  to="/login"
+                  // this is just to show how we can do styling here
+                  style={{
+                    width: "140px",
+                    borderRadius: "3px",
+                    letterSpacing: "1.5px"
+                  }}
+                >
+                  Login
+                </Link>
+            </li>  
+          ) : (
             <li className="nav-item">
-              <Link
-                onClick={this.toggleNav}
-                className={window.location.pathname === "/setting" ? "nav-link active" : "nav-link"}
-                to="/setting"
-              >
-                Setting
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                onClick={this.toggleNav}
-                className={window.location.pathname === "/sign-up" ? "nav-link active" : "nav-link"}
-                to="/sign-up"
-              >
-                Sign-up
-              </Link>
-            </li>            
+                <Link
+                  onClick={this.toggleNav}
+                  className={window.location.pathname === "logout" ? "nav-link active" : "nav-link"}
+                  to="logout"
+                  // this is just to show how we can do styling here
+                  style={{
+                    width: "140px",
+                    borderRadius: "3px",
+                    letterSpacing: "1.5px"
+                  }}
+                >
+                  Logout
+                </Link>
+            </li> 
+          )} 
           </ul>   
 
         </div>

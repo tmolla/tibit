@@ -172,177 +172,179 @@ class View extends Component {
 
   render() {
     return (
-      <Container>
-            <Card 
-                title="Tibits" 
-                icon="camera" 
-                NewTibitButton={() => (
-                  <p
-                    onClick={() => this.handleShow()}
-                    className="text-danger d-inline m-2"
+      <div>
+        <Container>
+              <Card 
+                  title="Tibits" 
+                  icon="camera" 
+                  NewTibitButton={() => (
+                    <p
+                      onClick={() => this.handleShow()}
+                      className="text-danger d-inline m-2"
+                    >
+                      Add New Tibit
+                    </p>
+                  )}
+                  SearchButton={() => (
+                    <p
+                      onClick={() => this.handleSearch()}
+                      className="text-danger d-inline m-3"
+                    >
+                      Search for Tibit
+                    </p>
+                  )}
                   >
-                    Add New Tibit
-                  </p>
-                )}
-                SearchButton={() => (
-                  <p
-                    onClick={() => this.handleSearch()}
-                    className="text-danger d-inline m-3"
-                  >
-                    Search for Tibit
-                  </p>
-                )}
-                >
-              {this.state.tibits.length ? (
-                <div className="card-columns">
-                  {this.state.tibits.map(tibit => (
-                    <Tibit
-                      key={tibit._id}
-                      id={tibit._id}
-                      action={tibit.action}
-                      goal={tibit.goal}
-                      location={tibit.location}
-                      note={tibit.note}
-                      date={tibit.date}
-                      //getAllTibits={this.getAllTibits.bind(this)}
-                      UpdateButton={() => (
-                        <p
-                          onClick={() => this.handleShow(tibit._id)}
-                          className="text-danger d-inline m-2"
-                        >
-                          Update
-                        </p>
-                      )}
-                      DeleteButton={() => (
-                        <p
-                          onClick={() => this.handleTibitDelete(tibit._id)}
-                          className="text-danger d-inline m-2"
-                        >
-                          Delete
-                        </p>
-                      )}
-                    />
-                  ))}
-                </div>
-              ) : (
-                  <h2 className="text-center">{this.state.message}</h2>
-                )}
-            </Card>
-          <Modal size="lg" show={this.state.show} onHide={this.handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Update tibit</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              {/* This is a form for search */}
-              {this.state.search ? 
-                ( <form>
-                    <div className="form-group">
-                      <label htmlFor="Query">
-                        <strong>search word</strong>
-                      </label>
-                      <input
-                        className="form-control"
-                        id="Title"
-                        type="text"
-                        value={this.state.query}
-                        placeholder="Type word to search for in Tibits"
-                        name="query"
-                        onChange={this.handleChange}
-                        required
+                {this.state.tibits.length ? (
+                  <div className="card-columns">
+                    {this.state.tibits.map(tibit => (
+                      <Tibit
+                        key={tibit._id}
+                        id={tibit._id}
+                        action={tibit.action}
+                        goal={tibit.goal}
+                        location={tibit.location}
+                        note={tibit.note}
+                        date={tibit.date}
+                        //getAllTibits={this.getAllTibits.bind(this)}
+                        UpdateButton={() => (
+                          <p
+                            onClick={() => this.handleShow(tibit._id)}
+                            className="text-danger d-inline m-2"
+                          >
+                            Update
+                          </p>
+                        )}
+                        DeleteButton={() => (
+                          <p
+                            onClick={() => this.handleTibitDelete(tibit._id)}
+                            className="text-danger d-inline m-2"
+                          >
+                            Delete
+                          </p>
+                        )}
                       />
-                    </div>
-                    <div className="pull-right">
-                      <button
-                        onClick={this.getAllTibits}
-                        type="submit"
-                        className="btn btn-lg btn-danger float-right"
-                      >
-                        Submit
-                      </button>
-                    </div>
-                </form>
+                    ))}
+                  </div>
                 ) : (
-              <form onSubmit={() => this.handleSave(this.state.id ? this.state.id : "")}>
-                <div className="form-group">
-                  <label>Action</label>
-                  <input type="textarea" className="form-control" id="action" name="action" value={this.state.action} onChange={this.handleChange}/>
-                  <small id="emailHelp" className="form-text text-muted">We'll share your information with anyone who pays.</small>
-                </div>
-                <div className="form-group">
-                  <label>
-                    <strong>Note</strong>
-                  </label>
-                  <input
-                    className="form-control"
-                    id="Note"
-                    type="textarea"
-                    rows="2"
-                    value={this.state.note}
-                    placeholder="Enter any detail about action (optional)"
-                    name="note"
-                    onChange={this.handleChange}
-                  />
-                </div>
-                <Row>
-                  <Col size="md-4"  >
-                    <div className="form-group">
-                      <label>
-                        <strong>Goal</strong>
-                      </label>
-                      <input
-                        className="form-control"
-                        id="Goal"
-                        type="text"
-                        value={this.state.goal}
-                        placeholder="Type your goal here (optional)"
-                        name="goal"
-                        onChange={this.handleChange}
-                        required
-                      />
-                    </div>
-                  </Col>
-                  <Col size="md-4">
-                    <div className="form-group">
-                        <label>
-                          <strong>Location</strong>
+                    <h2 className="text-center">{this.state.message}</h2>
+                  )}
+              </Card>
+            <Modal size="lg" show={this.state.show} onHide={this.handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Update tibit</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                {/* This is a form for search */}
+                {this.state.search ? 
+                  ( <form>
+                      <div className="form-group">
+                        <label htmlFor="Query">
+                          <strong>search word</strong>
                         </label>
                         <input
                           className="form-control"
-                          id="Location"
+                          id="Title"
                           type="text"
-                          value={this.state.location}
-                          placeholder="Enter the location of action (optional)"
-                          name="location"
+                          value={this.state.query}
+                          placeholder="Type word to search for in Tibits"
+                          name="query"
                           onChange={this.handleChange}
                           required
                         />
-                    </div>          
-                  </Col>
-                  <Col size="md-4">
-                    <div className="form-group">
+                      </div>
+                      <div className="pull-right">
+                        <button
+                          onClick={this.getAllTibits}
+                          type="submit"
+                          className="btn btn-lg btn-danger float-right"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                  </form>
+                  ) : (
+                <form onSubmit={() => this.handleSave(this.state.id ? this.state.id : "")}>
+                  <div className="form-group">
+                    <label>Action</label>
+                    <input type="textarea" className="form-control" id="action" name="action" value={this.state.action} onChange={this.handleChange}/>
+                    <small id="emailHelp" className="form-text text-muted">We'll share your information with anyone who pays.</small>
+                  </div>
+                  <div className="form-group">
+                    <label>
+                      <strong>Note</strong>
+                    </label>
+                    <input
+                      className="form-control"
+                      id="Note"
+                      type="textarea"
+                      rows="2"
+                      value={this.state.note}
+                      placeholder="Enter any detail about action (optional)"
+                      name="note"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <Row>
+                    <Col size="md-4"  >
+                      <div className="form-group">
                         <label>
-                          <strong>Date</strong>
+                          <strong>Goal</strong>
                         </label>
                         <input
                           className="form-control"
-                          id="Location"
-                          type="date"
-                          value={this.state.tmp_date}
-                          placeholder="Enter the location of action (optional)"
-                          name="date"
+                          id="Goal"
+                          type="text"
+                          value={this.state.goal}
+                          placeholder="Type your goal here (optional)"
+                          name="goal"
                           onChange={this.handleChange}
                           required
                         />
-                    </div>          
-                  </Col>
-                </Row>
-                <button type="submit" className="btn btn-success float-right">Save</button>
-              </form>
-            )}
-            </Modal.Body>
-          </Modal>
+                      </div>
+                    </Col>
+                    <Col size="md-4">
+                      <div className="form-group">
+                          <label>
+                            <strong>Location</strong>
+                          </label>
+                          <input
+                            className="form-control"
+                            id="Location"
+                            type="text"
+                            value={this.state.location}
+                            placeholder="Enter the location of action (optional)"
+                            name="location"
+                            onChange={this.handleChange}
+                            required
+                          />
+                      </div>          
+                    </Col>
+                    <Col size="md-4">
+                      <div className="form-group">
+                          <label>
+                            <strong>Date</strong>
+                          </label>
+                          <input
+                            className="form-control"
+                            id="Location"
+                            type="date"
+                            value={this.state.tmp_date}
+                            placeholder="Enter the location of action (optional)"
+                            name="date"
+                            onChange={this.handleChange}
+                            required
+                          />
+                      </div>          
+                    </Col>
+                  </Row>
+                  <button type="submit" className="btn btn-success float-right">Save</button>
+                </form>
+              )}
+              </Modal.Body>
+            </Modal>
+        </Container>
         <Footer />
-      </Container>
+        </div>
     );
   }
 }

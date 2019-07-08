@@ -1,3 +1,4 @@
 module.exports = {
-  Tibit: require("./tibit")
+  Tibit: require("./tibit"),
+  User: require("./User")
 };

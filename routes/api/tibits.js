@@ -14,7 +14,7 @@ router
   .put(tibitController.update)
   .delete(tibitController.remove);
 
-  router
+router
   .route("/find/:phrase")
   .get(tibitController.search);
 
