@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import Jumbotron from "../components/Jumbotron";
 import Footer from "../components/Footer";
 import API from "../utils/API";
-import { Col, Row, Container } from "../components/Grid";
-import Alert from 'react-bootstrap/Alert';
 import Intro from "../components/Intro";
 import Video from "../components/Video";
 import Reasons from "../components/Reasons";
 import SubFooter from "../components/SubFooter";
-
+import {Link} from "react-router-dom"
 
 class Home extends Component {
   state = {
@@ -110,6 +107,7 @@ class Home extends Component {
     }).then(() => this.findTibits());
   };
 
+
   render() {
     return (
       <div className="ui divided grid">
@@ -138,7 +136,7 @@ class Home extends Component {
         <Reasons />
             
         </div>
-      
+        
         <Footer />
       </div>
     );

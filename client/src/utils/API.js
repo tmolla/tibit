@@ -21,4 +21,12 @@ export default {
   updateTibit: function(id, tibitData) {
     return axios.put("/api/tibits/" + id, tibitData);
   },
+  // Update a given tibit
+  register: function(id, tibitData) {
+    return axios.post("/api/users/register" + tibitData);
+  },
+  // Update a given tibit
+  login: function(id, tibitData) {
+    return axios.post("/api/users/login" + tibitData);
+  },
 };
