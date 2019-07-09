@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import API from "../utils/API";
 import {Col, Row, Container } from "../components/Grid";
 //import { List } from "../components/List";
+import store from "../store"
 import Modal from "react-bootstrap/Modal"
 
 class View extends Component {
@@ -30,6 +31,7 @@ class View extends Component {
       location: "",
       date: "",
       note: "",
+      userId:store.getState().auth.user.id,
       message: "Some message"
     };
   }
@@ -62,6 +64,7 @@ class View extends Component {
         goal: tibit.goal,
         location: tibit.location,
         date: tibit.date,
+        userId:store.getState().auth.user.id,
         show:true,
         search:false
       });
@@ -97,7 +100,8 @@ class View extends Component {
         show:false
       })
       //console.log("Query string " + this.state.query)
-      API.findTibits(this.state.query.trim())
+      //console.log("Query userID " + this.state.userId)
+      API.findTibits(this.state.query.trim(), this.state.userId)
       .then(res =>{
         // console.log("fiinding tibits")
         // console.log(res.data[0])
@@ -119,7 +123,7 @@ class View extends Component {
         })
       })
     }else {
-    API.getAllTibits()
+    API.getAllTibits(this.state.userId)
       .then(res => {
         //console.log("getting all tibits")
         if (!(res.data.length === 0)) {
@@ -159,6 +163,7 @@ class View extends Component {
         goal: this.state.goal,
         location: this.state.location,
         date: this.state.date,
+        owner:this.state.userId,
         note: this.state.note
     }
     //console.log(data);
@@ -171,6 +176,8 @@ class View extends Component {
   }; 
 
   render() {
+    //console.log("In view")
+    //console.log(this.state.userId)
     return (
       <div>
         <Container>

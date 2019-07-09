@@ -5,7 +5,7 @@ import Intro from "../components/Intro";
 import Video from "../components/Video";
 import Reasons from "../components/Reasons";
 import SubFooter from "../components/SubFooter";
-import {Link} from "react-router-dom"
+//import {Link} from "react-router-dom"
 
 class Home extends Component {
   state = {

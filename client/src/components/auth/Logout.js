@@ -15,7 +15,7 @@ class Logout extends Component {
   }
 
   render() {
-    console.log("in logout");
+    //console.log("in logout");
     return (
       <Redirect to="/" />
     );

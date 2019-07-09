@@ -17,35 +17,47 @@ const db = require("../models");
 // Defining methods for the TibitsController
 module.exports = {
   findAll: function(req, res) {
-    db.Tibit.find(req.query)
+    //console.log(req)
+    //db.Tibit.find(req.query)
+    //console.log("In findAll")
+    //console.log(req.params.userId);
+    db.Tibit.find({owner: req.params.userId})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
+    //console.log("In findById " + req.params)
+    //console.log(req.query)
     db.Tibit.findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
+    //console.log("In create")
     db.Tibit.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
+    //console.log("In update")
     db.Tibit.findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
+    //console.log("In remove")
     db.Tibit.findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   search: function(req, res) {
-    const searchString = new RegExp(req.params.phrase);
+    //console.log("in serach")
+    const searchString = new RegExp(req.query.phrase);
+    const userId = req.query.userId
     //console.log("getting query " + searchString);
-    db.Tibit.find({action : {$regex: searchString ,$options:'i'}})
+    //console.log("getting query " + userId);
+    db.Tibit.find({owner:userId, action : {$regex: searchString ,$options:'i'}})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -111,6 +123,7 @@ module.exports = {
         if (isMatch) {
           // User matched
           // Create JWT Payload
+          //console.log(user.id)
           const payload = {
             id: user.id,
             name: user.name
