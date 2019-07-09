@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import store from "../../store"
 import "./style.css";
-import authReducer from "../../reducers/authReducer";
 
 class Nav extends Component {
   state = {
