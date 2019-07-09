@@ -19,7 +19,7 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  newsKeywords: Array
+  newsKeywords: Array,
 });
 
 module.exports = User = mongoose.model("users", UserSchema);
