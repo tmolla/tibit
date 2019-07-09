@@ -2,12 +2,21 @@ import axios from "axios";
 
 export default {
   // search for Tibits
-  findTibits: function(phrase) {
-     return axios.get("/api/tibits/find/" + phrase );
+  findTibits: function(phrase, userId) {
+    //console.log("in find tibits for search")
+    //console.log("phrase " + phrase)
+    //console.log("userId " + userId)
+     return axios.get("/api/tibits/find", {
+       params: {
+         phrase:phrase, 
+         userId: userId
+        }
+      });
    },
   // Gets all tibits
-  getAllTibits: function() {
-    return axios.get("/api/tibits");
+  getAllTibits: function(userId) {
+    //console.log("going to axios " + userId);
+    return axios.get("/api/tibits/all/" + userId);
   },
   // Deletes the saved book with the given id
   deleteTibit: function(id) {
