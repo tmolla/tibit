@@ -44,7 +44,6 @@ function App() {
   <Provider store={store}>
     <Router>
       <div>
-        <Nav />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
