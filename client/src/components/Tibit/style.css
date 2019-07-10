@@ -7,3 +7,20 @@
     margin-bottom: 15px;
   }
 }
+
+.card {
+  color: white;
+}
+
+.card-body {
+  text-align: center;
+}
+
+.settings {
+  background-color: whitesmoke;
+  color: white;
+}
+
+.user-welcome {
+  size: 200px;
+}
