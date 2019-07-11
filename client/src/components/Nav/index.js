@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import store from "../../store"
 import "./style.css";
+//import reducers from "../../reducers";
 
 class Nav extends Component {
   state = {
@@ -33,7 +34,8 @@ class Nav extends Component {
 
   render() {
     return (
-      <nav className="navbar sticky-top navbar-expand-lg .bg-transparent">
+      // <nav className="navbar sticky-top navbar-expand-lg .bg-transparent">
+      <nav className="navbar sticky-top navbar-expand-lg navbar-dark">
         <Link className="navbar-brand" to="/">
           TibiT
         </Link>
@@ -56,6 +58,10 @@ class Nav extends Component {
                 onClick={this.toggleNav}
                 className={window.location.pathname === "/" ? "nav-link active" : "nav-link"}
                 to="/"
+                style={{
+                   color:"rgb(66, 149, 245)",
+                   fontSize:"20px"
+                 }}
               >
                 Home
               </Link>
@@ -66,6 +72,10 @@ class Nav extends Component {
                 onClick={this.toggleNav}
                 className={window.location.pathname === "/view" ? "nav-link active" : "nav-link"}
                 to="/view"
+                style={{
+                  color:"rgb(66, 149, 245)",
+                  fontSize:"20px"
+                }}
               >
                 View
               </Link>
@@ -79,11 +89,11 @@ class Nav extends Component {
                   className={window.location.pathname === "/login" ? "nav-link active" : "nav-link"}
                   to="/login"
                   // this is just to show how we can do styling here
-                  style={{
-                    width: "140px",
-                    borderRadius: "3px",
-                    letterSpacing: "1.5px"
-                  }}
+                   style={{
+                     color:"rgb(66, 149, 245)",
+                     fontSize:"20px"
+                     
+                   }}
                 >
                   Login
                 </Link>
@@ -96,9 +106,8 @@ class Nav extends Component {
                   to="logout"
                   // this is just to show how we can do styling here
                   style={{
-                    width: "140px",
-                    borderRadius: "3px",
-                    letterSpacing: "1.5px"
+                    color:"rgb(66, 149, 245)",
+                    fontSize:"20px"
                   }}
                 >
                   Logout
