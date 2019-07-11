@@ -12,7 +12,7 @@ import View from "./pages/View";
 //import SignUp from "./pages/Signup"
 import NoMatch from "./pages/NoMatch";
 //import MyModal from "./pages/MyModal"
-import Nav from "./components/Nav";
+//import Nav from "./components/Nav";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Logout from "./components/auth/Logout";
