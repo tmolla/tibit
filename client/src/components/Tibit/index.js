@@ -9,51 +9,59 @@ class Tibit extends Component {
     this.state = {
       id: props.id,
       action: props.action,
-      note: props.note,
-      goal: props.goal,
-      location: props.location,
-      date: props.date,
+      //location: props.location,
+      date: (new Date(props.date)).toDateString(),
       DeleteButton: props.DeleteButton,
       UpdateButton: props.UpdateButton,
-      color: "rgb(84, 131, 233)"
+      HandleColors: props.HandleColors,
+      color: props.color,
+      allColors:[
+        "rgb(84, 131, 233)",
+        "rgb(84, 199, 119)",
+        "rgb(190, 10, 190)"
+      ],
     };
+    console.log("view start color " + props.color)
+    console.log("Formatted date " + this.state.date)
   }
 
-  // changeColor() changes color of TibiT card //
-
   changeColor() {
-
-    if(this.state.color == "rgb(84, 131, 233)") {
-
-      this.setState({
-        color: "rgb(84, 199, 119)"
-      })
-
+    //console.log("color start: " + this.state.color)
+    var currentColorIndex = 0
+    if (this.state.color !== "") { //there is color  
+      currentColorIndex = this.state.allColors.indexOf(this.state.color)
+      //console.log("if start " + currentColorIndex)
+      if (currentColorIndex === 2) {
+        currentColorIndex = 0 // set it back to the first
+      }else {
+        currentColorIndex = currentColorIndex + 1 //get the next
+      }
+      //console.log("if end " + currentColorIndex)
     }
-   else {
+    //console.log("before setting state " + currentColorIndex)
     this.setState({
-      color: "rgb(190, 10, 190)"
+      color: this.state.allColors[currentColorIndex]
     })
-   }
-
+    this.state.HandleColors(this.state.id, this.state.allColors[currentColorIndex]);
+    //console.log("After setting state " + this.state.allColors[currentColorIndex])
   }
 
   render() {
     var cts = this.props.date,
       cdate = (new Date(cts)).toDateString();
     return (
-      <div className="card" onClick={this.changeColor.bind(this)} style={{background: this.state.color}}>
+      <div className="card" style={{background: this.state.color}}>
         <div className="card-header">
             <div className="float left">
               <this.state.UpdateButton />
               <this.state.DeleteButton /> 
            </div>
         </div>
-        <div className="card-body float-center">
-        <p>{this.props.action &&<p>{this.props.action}</p>}</p>
+        <div className="card-body">
+          {this.props.action &&<p className="float-left">{this.props.action}</p>}
         </div>
-        <hr/>
-            {this.props.date && <p className=" float-right font-italic small m-2">{cdate}</p>}
+        {/* <hr/> */}
+        {this.props.date && <p className=" float-right font-italic small m-2" onClick={this.changeColor.bind(this)}>{cdate}</p>}
       </div>
     );
   }

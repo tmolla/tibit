@@ -1,10 +1,11 @@
 import React from "react";
 import "./style.css";
-import ColorButton from "../Color";
-import Words from "../Wordslide"
+// import ColorButton from "../Color";
+// import Words from "../Wordslide"
+import { Col, Row } from "../Grid";
 import { Link } from "react-router-dom";
 
-function Card({ icon, title, NewTibitButton, SearchButton, children }) {
+function Card({NewTibitButton, SearchButton, children }) {
   return (
 
 
@@ -14,17 +15,27 @@ function Card({ icon, title, NewTibitButton, SearchButton, children }) {
 
     <div class="ui segment">
       <div className="card-body tibit-card">
-      <p className="float-right large logout">Log Out</p>
-        <p className="user-welcome large">
-        <Link className="nav-brand" to="/">
-          TibiT
-        </Link>
-        </p>
-      <div class="ui massive buttons">  
-           <NewTibitButton />
-           <div class="or"></div>
-          <SearchButton />
-        </div>
+        <Row>
+        <Col size="md-4">
+            <p className="user-welcome large">
+            <Link className="nav-brand" to="/">
+              TibiT
+            </Link>
+            </p>
+            </Col>
+            <Col size="md-4">
+              <div class="ui massive buttons">  
+                <NewTibitButton />
+                <div class="or "></div>
+                <SearchButton />
+              </div>
+              </Col>
+          <Col size="md-4">
+            <p className="user-welcome float-right large logout">
+              <Link to="logout">Log Out</Link></p>
+            </Col>
+          </Row>
+
         <hr />
         {children}
       </div>

@@ -3,7 +3,8 @@ import Card from "../components/Card";
 import Tibit from "../components/Tibit";
 //import Footer from "../components/Footer";
 import API from "../utils/API";
-import {Col, Row, Container } from "../components/Grid";
+//import {Col, Row, Container } from "../components/Grid";
+import {Col, Row} from "../components/Grid";
 import store from "../store"
 import Modal from "react-bootstrap/Modal";
 
@@ -17,6 +18,7 @@ class View extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this)
     this.handleSave = this.handleSave.bind(this)
+    this.handleColorChange = this.handleColorChange.bind(this)
 
     
     this.state = {
@@ -26,12 +28,18 @@ class View extends Component {
       query: '',
       id: '',
       action: "",
-      goal: "",
-      location: "",
+      // goal: "",
+      //location: "",
+      // note: "",
       date: "",
-      note: "",
+      color:"",
       userId:store.getState().auth.user.id,
-      message: "Some message"
+      message: "",
+      allColors:[
+        "rgb(84, 131, 233)",
+        "rgb(84, 199, 119)",
+        "rgb(190, 10, 190)"
+      ],
     };
   }
 
@@ -59,14 +67,14 @@ class View extends Component {
       this.setState({ 
         id: tibit._id,
         action: tibit.action,
-        note: tibit.note,
-        goal: tibit.goal,
-        location: tibit.location,
+        color:tibit.color,
+        //location: tibit.location,
         date: tibit.date,
         userId:store.getState().auth.user.id,
         show:true,
         search:false
       });
+      console.log("handle show color " + this.state.color)
     }else {
       this.setState(
         {
@@ -81,6 +89,9 @@ class View extends Component {
     this.setState({
       [name]: value
     });
+    console.log("Name " + name)
+    console.log("value " + name)
+
   };
 
   handleTibitDelete = id => {
@@ -97,7 +108,8 @@ class View extends Component {
         show:false
       })
       
-      API.findTibits(this.state.query.trim())
+
+      API.findTibits(this.state.query.trim(), this.state.userId)
       .then(res =>{
         // console.log("fiinding tibits")
         // console.log(res.data[0])
@@ -119,7 +131,7 @@ class View extends Component {
         })
       })
     }else {
-    API.getAllTibits()
+    API.getAllTibits(this.state.userId)
       .then(res => {
         //console.log("getting all tibits")
         if (!(res.data.length === 0)) {
@@ -154,44 +166,61 @@ class View extends Component {
   }
 
   handleSave = id => {
-    const data ={
-        action: this.state.action,
-        goal: this.state.goal,
-        location: this.state.location,
-        date: this.state.date,
-        owner:this.state.userId,
-        note: this.state.note
-    }
+    console.log("In save color: " + this.state.color)
     //console.log(data);
     if (id) {
-      API.updateTibit(id, data).then(() => this.handleClose());
+      const savedata ={
+        action: this.state.action,
+        color:(id ? this.state.color:""),
+        date: this.state.date,
+        owner:this.state.userId,
+    }
+      API.updateTibit(id, savedata).then(() => this.handleClose());
     }else{
-      API.createTibit(data).then(() => this.handleClose())
+      const newdata ={
+        action: this.state.action,
+        date: this.state.date,
+        owner:this.state.userId,
+    }
+      API.createTibit(newdata).then(() => this.handleClose())
     }
 
   }; 
+
+  handleColorChange = (id, color) => {
+    console.log("In save color: " + color)
+    console.log("id " + id)
+    const data ={
+        color:color,
+    }
+    API.updateTibit(id, data).then(() => {
+      console.log("Saved color")
+    });
+  }
+
+
 
   render() {
     return (
       <div>
         {/* <Container> */}
             <Card 
-                title="TibiTs" 
-                icon="" 
+                // title="TibiTs" 
+                // icon="" 
                 NewTibitButton={() => (
-                  <p
+                  <button
                     onClick={() => this.handleShow()}
-                    className=" ui button"
+                    className=" blue ui button"
                   >
-                    <i class="blue plus icon"></i>
-                  </p>
+                    <i className="plus icon"></i>
+                  </button>
                 )}
                 SearchButton={() => (
                   <button
                     onClick={() => this.handleSearch()}
-                    className="ui button"
+                    className="ui positive button"
                   >
-                    <i class="search green icon"></i>
+                    <i className="search icon"></i>
                   </button>
                 )}
                 >
@@ -202,17 +231,19 @@ class View extends Component {
                       key={tibit._id}
                       id={tibit._id}
                       action={tibit.action}
-                      goal={tibit.goal}
-                      location={tibit.location}
-                      note={tibit.note}
+                      //goal={tibit.goal}
+                      //location={tibit.location}
+                      //note={tibit.note}
+                      color={tibit.color}
                       date={tibit.date}
                       //getAllTibits={this.getAllTibits.bind(this)}
+                      HandleColors={this.handleColorChange}
                       UpdateButton={() => (
                         <p
                           onClick={() => this.handleShow(tibit._id)}
                           className="text-danger d-inline m-2"
                         >
-                          <i class="inverted edit icon"></i>
+                          <i className="inverted edit icon"></i>
                         </p>
                       )}
                       DeleteButton={() => (
@@ -220,7 +251,7 @@ class View extends Component {
                           onClick={() => this.handleTibitDelete(tibit._id)}
                           className="text-danger d-inline m-2"
                         >
-                          <i class="inverted trash alternate outline icon"></i>
+                          <i className="inverted trash alternate outline icon"></i>
                         </p>
                       )}
                     />
@@ -270,7 +301,7 @@ class View extends Component {
                   <input type="textarea" className="form-control" id="action" name="action" value={this.state.action} onChange={this.handleChange}/>
                   <small id="emailHelp" className="form-text text-muted">We'll share your information with anyone who pays.</small>
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group">
                   <label>
                     <strong>Note</strong>
                   </label>
@@ -284,9 +315,9 @@ class View extends Component {
                     name="note"
                     onChange={this.handleChange}
                   />
-                </div>
+                </div> */}
                 <Row>
-                  <Col size="md-4"  >
+                  {/* <Col size="md-4"  >
                     <div className="form-group">
                       <label>
                         <strong>Goal</strong>
@@ -302,8 +333,8 @@ class View extends Component {
                         required
                       />
                     </div>
-                  </Col>
-                  <Col size="md-4">
+                  </Col> */}
+                  {/* <Col size="md-6">
                     <div className="form-group">
                         <label>
                           <strong>Location</strong>
@@ -319,7 +350,7 @@ class View extends Component {
                           required
                         />
                     </div>          
-                  </Col>
+                  </Col> */}
                   <Col size="md-4">
                     <div className="form-group">
                         <label>
@@ -327,10 +358,10 @@ class View extends Component {
                         </label>
                         <input
                           className="form-control"
-                          id="Location"
+                          id="date"
                           type="date"
                           value={this.state.tmp_date}
-                          placeholder="Enter the location of action (optional)"
+                          placeholder="Enter the date of action (optional)"
                           name="date"
                           onChange={this.handleChange}
                           required
@@ -343,8 +374,6 @@ class View extends Component {
             )}
             </Modal.Body>
           </Modal>
-
-       
       </div>
     );
   }
