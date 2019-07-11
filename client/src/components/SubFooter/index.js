@@ -5,53 +5,48 @@ function SubFooter() {
   return (
    <div className="subfooter">
 
-<div class="ui segment">
+<div class="ui basic segment">
+<h3 className="features"> FEATURES </h3>
 
-<div class="ui three column very relaxed grid">
-    <div class="column four">
+<table class="ui four column doubling stackable grid">
+  
+    <div class="column">
 
+    <i class="big plus icon"></i><i class=" big pencil alternate icon"></i><i class="big trash alternate outline icon"></i>
+    
+    <h4>Create Update & Delete</h4>
+    <p>Enter an action and make it official</p>
    
     </div>
-    <div class="column five">
+    <div class="column">
 
-    <h3>Features </h3>
-  
+      <i class="big check circle outline icon"></i>
+      
+      <h4>You Goal Digger, You</h4>
+      <p>Dated to track and tackle your goals</p>
+
+    
     </div>
+    
+    <div class="column">
 
-    <div class="column six">
-
+      <i class="big search icon"></i>
+      
+      <h4>Keep Track</h4>
+      <p>Search through and find using any keyword </p>
   
    
     </div>
-  </div>
+    <div class="column">
 
-  <div class="ui three column very relaxed grid">
-
-    <div class="column one">
-
-      <h3>Staying Organized</h3>
-
-      <img src="/Images/thoughts.jpeg" class="ui medium rounded image" width="500"></img>
+      <i class="big paint tint icon"></i>
       
-      
+      <h4>Splash of Color</h4>
+      <p>Click tint icon & change color</p>
+  
+   
     </div>
-    <div class="column two">
-
-    <h3>Make ideas happen</h3>
-
-    <video src="/Images/ideamen.MP4" class="ui medium rounded image" width="500" autoPlay loop></video>
-      
-    </div>
-
-    <div class="column three">
-
-    <h3>TibiT Tips n Tricks</h3>
-
-    <img src="/Images/images7.jpeg" class="ui medium rounded image" width="500"></img>
-      
-    </div>
-  </div>
-
+  </table>
 
 </div> 
        
