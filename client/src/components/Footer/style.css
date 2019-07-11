@@ -1,8 +1,8 @@
 .footer {
-    height: 150px;
-    width: 1600px;
+    height: 50px;
+    text-align: center;
     padding: 0;
     margin: 0;
-    background-color: rgb(219, 218, 218);
+    background-color: rgb(255, 255, 255);
     opacity: 0.9;
 }

@@ -38,7 +38,9 @@ class View extends Component {
       allColors:[
         "rgb(84, 131, 233)",
         "rgb(84, 199, 119)",
-        "rgb(190, 10, 190)"
+        "rgb(190, 10, 190)",
+        "rgb(230, 156, 38)",
+        "rgb(224, 222, 89)"
       ],
     };
   }

@@ -1,41 +1,19 @@
 .subfooter {
-    height: 950px;
     text-align: center;
-    color: white;
+    color: rgb(139, 55, 139);
 }
-
-
-
-
-
-.one {
-    height: 450px;
+ .four {
+    background-color: rgb(255, 255, 255);
+} 
+h3.features {
+    BACKGROUND: rgb(255, 255, 255); 
+    margin: 20px;
+    padding: 10px;
+    letter-spacing: 3px;
 }
-
-.two {
-    height: 450px;
+table.ui.four.column.doubling.stackable.grid {
+    margin: 0px;
 }
-
-.three {
-    height: 450px;
+div.ui.segment {
+    padding: 0px;
 }
-
-.four {
-    background-color: rgb(233, 233, 233);
-}
-
-.five {
-
-    background-color: rgb(233, 233, 233);
-
-}
-
-.six {
-    
-    background-color: rgb(233, 233, 233);
-
-}
-
-
-
-

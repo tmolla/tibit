@@ -7,8 +7,9 @@ import "./style.css";
 function Reasons () {
     return(
         <div className="headings">
-            <h2>Organize your thoughts, one tibit at a time.</h2>
-            <h3>Sign up</h3>  
+            <br />
+            <br />
+            <h2 className="words">Organize your thoughts, one tibit at a time</h2>
         </div>
     );
 }

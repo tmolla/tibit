@@ -8,19 +8,15 @@ import Video from "../components/Video";
 import Reasons from "../components/Reasons";
 import SubFooter from "../components/SubFooter";
 //import {Link} from "react-router-dom"
-
-
 class Home extends Component {
   // state = {
   //   tibits: [],
   //   q: "",
   //   message: "Search For A Tibit To Begin!"
   // };
-
-  componentDidMount() {
-    //this.findTibits();
-  }
-
+  // componentDidMount() {
+  //   //this.findTibits();
+  // }
   // handleInputChange = event => {
   //   const { name, value } = event.target;
   //   this.setState({
@@ -28,7 +24,6 @@ class Home extends Component {
   //   });
   //   // console.log(this.state.q);
   // };
-
   // findTibits = () => {
   //   //console.log(this.state.q)
   //   if (this.state.q.trim()){
@@ -47,7 +42,6 @@ class Home extends Component {
   //           })
   //         }
   //       })
-
   //       .catch((err) =>{
   //         this.setState({
   //           tibits: [],
@@ -55,7 +49,6 @@ class Home extends Component {
   //         })
   //         //console.log("fiinding tibits catch")
   //       })
-
   //   } else {
   //     API.getAllTibits()
   //       .then(res =>{
@@ -71,7 +64,6 @@ class Home extends Component {
   //           })
   //         }
   //       })
-
   //       .catch((err) =>
   //         this.setState({
   //           tibits: [],
@@ -80,26 +72,21 @@ class Home extends Component {
   //       );
   //   }
   // };
-
   // handleFormSubmit = event => {
   //   event.preventDefault();
   //   this.findTibits();
   // };
-
   // handleTibitDelete = id => {
   //   const tibit = this.state.tibits.find(tibit => tibit._id === id);
   //   API.deleteTibit(tibit._id)
   //   .then(() => this.findTibits());
   // };
-
   // handleTibitUpdate = id => {
   //   const tibit = this.state.tibits.find(tibit => tibit._id === id);
-
   //   API.updateTibit(tibit._id, {
   //     action: "Read the best book ever! " + Date()
   //   }).then(() => this.findTibits());
   // };
-
   // handleTibitCreate = () => {
   //   API.createTibit({
   //     action: "Great Action" + Date(),
@@ -109,44 +96,38 @@ class Home extends Component {
   //     note: "This is a longer string"
   //   }).then(() => this.findTibits());
   // };
-
-
   render() {
     return (
       <div>
       <Nav />
       <div className="ui divided grid">
-
         <div className="sixteen wide column">
-
         <Intro />
        
         
         </div>
-
         <div className="sixteen wide column">
-
         <Video />
-
         </div>
-
           <div class="sixteen wide column">
           
           
-        <SubFooter />
+        <Reasons />
           
         </div> 
         <div className="sixteen wide column center-align">
             
-        <Reasons />
+        <SubFooter />
             
         </div>
         
+        <div className="sixteen wide column center-align">
         <Footer />
+        
+        </div>
       </div>
       </div>
     );
   }
 }
-
 export default Home;

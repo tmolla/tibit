@@ -14,7 +14,7 @@ function NoMatch() {
           <div class="column">
           
             <h1 className="text-center">Oops!</h1>         
-            <img class="ui medium image" src= {pencil} ></img>
+            <img class="ui medium image" src= {pencil} alt="blue penciel"></img>
             </div>
           
         </Col>

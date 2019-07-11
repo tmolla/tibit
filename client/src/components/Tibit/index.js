@@ -18,7 +18,12 @@ class Tibit extends Component {
       allColors:[
         "rgb(84, 131, 233)",
         "rgb(84, 199, 119)",
-        "rgb(190, 10, 190)"
+        "rgb(190, 10, 190)",
+        "rgb(230, 156, 38)",
+        "rgb(224, 222, 89)",
+        "rgb(245, 83, 83)",
+        "rgb(121, 83, 245)",
+        "rgb(209, 77, 221)"
       ],
     };
     console.log("view start color " + props.color)
@@ -31,7 +36,7 @@ class Tibit extends Component {
     if (this.state.color !== "") { //there is color  
       currentColorIndex = this.state.allColors.indexOf(this.state.color)
       //console.log("if start " + currentColorIndex)
-      if (currentColorIndex === 2) {
+      if (currentColorIndex === this.state.allColors.length -1) {
         currentColorIndex = 0 // set it back to the first
       }else {
         currentColorIndex = currentColorIndex + 1 //get the next
@@ -55,13 +60,18 @@ class Tibit extends Component {
             <div className="float left">
               <this.state.UpdateButton />
               <this.state.DeleteButton /> 
+              <p
+                onClick={this.changeColor.bind(this)}
+                className="text-danger d-inline m-2">
+                <i class="inverted tint icon"></i>
+              </p>
            </div>
         </div>
         <div className="card-body">
           {this.props.action &&<p className="float-left">{this.props.action}</p>}
         </div>
         {/* <hr/> */}
-        {this.props.date && <p className=" float-right font-italic small m-2" onClick={this.changeColor.bind(this)}>{cdate}</p>}
+        {this.props.date && <p className=" float-right font-italic small m-2">{cdate}</p>}
       </div>
     );
   }
